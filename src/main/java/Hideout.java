@@ -57,37 +57,6 @@ public class Hideout implements HideoutPlan {
     }
 
     /**
-     * The team from this hideout fights with the team from an opposing hideout.
-     * @param opponent The opposing hideout.
-     * @return         Did the opponent loose?
-     */
-    boolean fight(Hideout opponent) {
-        int totalHealth = getTotalHealth();
-        int totalDef = getTotalDefense();
-        int totalDam = getTotalDamage();
-        int oppHealth = opponent.getTotalHealth();
-        int oppDef = opponent.getTotalDefense();
-        int oppDam = opponent.getTotalDamage();
-
-        int tempDam;
-        int i = 0;//Iterator to make sure there will be an exit condition
-        while (totalHealth > 0 && oppHealth > 0 && i < 25) {
-            //There is still a fight going on
-            tempDam = totalDam - (oppDef / 2);
-            if (tempDam > 0) {
-                oppHealth -= tempDam;
-            }
-            tempDam = oppDam - (totalDef / 2);
-            if (tempDam > 0) {
-                totalHealth -= tempDam;
-            }
-            i++;
-        }
-
-        return totalHealth >= oppHealth;
-    }
-
-    /**
      * Gets the allegiance.
      * Should be "Hero" or "Villan"
      * @return The allegiance of the team.
