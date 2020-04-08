@@ -2,6 +2,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import main.java.Cape;
+import main.java.Person;
+import main.java.PowerDecorator;
 import org.junit.Test;
 
 public class CapeTest {

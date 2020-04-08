@@ -1,3 +1,5 @@
+package main.java;
+
 public abstract class CapeDecorator implements Person {
     protected Person cape;
 

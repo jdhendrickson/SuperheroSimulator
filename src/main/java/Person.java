@@ -1,4 +1,6 @@
-interface Person {
+package main.java;
+
+public interface Person {
 
     /**
      * A way for a cape to fight another cape.

@@ -1,3 +1,5 @@
+package main.java;
+
 import static java.lang.Math.floor;
 
 public class Cape implements Person {
@@ -9,7 +11,7 @@ public class Cape implements Person {
     /**
      * A basic constructor.
      */
-    Cape() {
+    public Cape() {
         damage = 1;
         dodge = 0;
         armor = 0;

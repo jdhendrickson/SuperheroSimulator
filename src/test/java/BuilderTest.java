@@ -2,6 +2,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import main.java.Cape;
+import main.java.Hideout;
+import main.java.Person;
+import main.java.UndergroundCaveBuilder;
 import org.junit.Test;
 
 public class BuilderTest {

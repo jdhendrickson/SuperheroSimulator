@@ -1,3 +1,5 @@
+package main.java;
+
 public class UndergroundCaveBuilder implements HideoutBuilder {
     private Hideout hideout;
 

@@ -1,3 +1,5 @@
+package main.java;
+
 import static java.lang.Math.floor;
 
 public class PowerDecorator extends CapeDecorator {
