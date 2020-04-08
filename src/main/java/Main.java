@@ -19,11 +19,14 @@ public class Main {
 
     /**
      * The main function.
-     * @param args Command line args. Not used.
+     * @param args Command line args. First arg should be the json file being looked for.
      */
     public static void main(String[] args) {
-        initFromJson("SecondCityExample.json");
-
+        if (args.length > 0) {
+            initFromJson(args[1]);
+        } else {
+            initFromJson("SecondCityExample.json");
+        }
         Person[] tempPersonArr1;
         Person[] tempPersonArr2;
         int temp1;
