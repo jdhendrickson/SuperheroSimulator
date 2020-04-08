@@ -37,9 +37,29 @@ public class Hideout implements HideoutPlan {
      * @return         Did the opponent loose?
      */
     boolean fight(Hideout opponent) {
-        boolean ret = false;
+        int totalHealth = getTotalHealth();
+        int totalDef = getTotalDefense();
+        int totalDam = getTotalDamage();
+        int oppHealth = opponent.getTotalHealth();
+        int oppDef = opponent.getTotalDefense();
+        int oppDam = opponent.getTotalDamage();
 
-        return ret;
+        int tempDam;
+        int i = 0;//Iterator to make sure there will be an exit condition
+        while (totalHealth > 0 && oppHealth > 0 && i < 25) {
+            //There is still a fight going on
+            tempDam = totalDam - (oppDef / 2);
+            if (tempDam > 0) {
+                oppHealth -= tempDam;
+            }
+            tempDam = oppDam - (totalDef / 2);
+            if (tempDam > 0) {
+                totalHealth -= tempDam;
+            }
+            i++;
+        }
+
+        return totalHealth >= oppHealth;
     }
 
     /**
@@ -96,7 +116,7 @@ public class Hideout implements HideoutPlan {
      */
     int getTotalDamage() {
         int temp = 0;
-        for(int i = 0; i <  getTeamSize(); i++) {
+        for (int i = 0; i <  getTeamSize(); i++) {
             temp += this.team[i].getDamageDealt();
         }
         return temp;
@@ -108,7 +128,7 @@ public class Hideout implements HideoutPlan {
      */
     int getTotalDefense() {
         int temp = 0;
-        for(int i = 0; i <  getTeamSize(); i++) {
+        for (int i = 0; i <  getTeamSize(); i++) {
             temp += this.team[i].getArmor() + this.team[i].getDodge();
         }
         return temp;
@@ -120,7 +140,7 @@ public class Hideout implements HideoutPlan {
      */
     int getTotalHealth() {
         int temp = 0;
-        for(int i = 0; i <  getTeamSize(); i++) {
+        for (int i = 0; i <  getTeamSize(); i++) {
             temp += this.team[i].getCurrentHealth();
         }
         return temp;
