@@ -40,11 +40,27 @@ public class Hideout implements HideoutPlan {
     }
 
     /**
+     * Gets the durabilty of the material being used.
+     * @return The durability of the material used.
+     */
+    public int getDurability() {
+        return this.durability;
+    }
+
+    /**
      * Sets the hiddenness of the location of the base.
      * @param in The hiddenness of the base.
      */
     public void setHiddenness(int in) {
         this.hiddenness = in;
+    }
+
+    /**
+     * Gets the hiddenness of the hideout.
+     * @return The hiddenness of the hideout.
+     */
+    public int getHiddenness() {
+        return this.hiddenness;
     }
 
     /**

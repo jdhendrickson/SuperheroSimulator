@@ -13,10 +13,22 @@ interface HideoutPlan {
     void setDurability(int in);
 
     /**
+     * Gets the durabilty of the material being used.
+     * @return The durability of the material used.
+     */
+    public int getDurability();
+
+    /**
      * Sets the hiddenness of the location of the base.
      * @param in The hiddenness of the base.
      */
     void setHiddenness(int in);
+
+    /**
+     * Gets the hiddenness of the hideout.
+     * @return The hiddenness of the hideout.
+     */
+    int getHiddenness();
 
     /**
      * Gets the team.
