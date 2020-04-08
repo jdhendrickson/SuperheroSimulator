@@ -1,4 +1,6 @@
 public class Hideout implements HideoutPlan {
+    private String name;
+    private String allegiance;
     private Person[] team;
     private int durability;
     private int hiddenness;
@@ -6,7 +8,9 @@ public class Hideout implements HideoutPlan {
     /**
      * Basic constructor
      */
-    public Hideout() {
+    public Hideout(String name, String allegiance) {
+        this.name = name;
+        this.allegiance = allegiance;
         durability = 0;
         hiddenness = 0;
     }
@@ -63,6 +67,15 @@ public class Hideout implements HideoutPlan {
     }
 
     /**
+     * Gets the allegiance.
+     * Should be "Hero" or "Villan"
+     * @return The allegiance of the team.
+     */
+    public String getAllegiance() {
+        return allegiance;
+    }
+
+    /**
      * Sets the durabilty of the material being used.
      * @param in The durability of the material used.
      */
@@ -92,6 +105,14 @@ public class Hideout implements HideoutPlan {
      */
     public int getHiddenness() {
         return this.hiddenness;
+    }
+
+    /**
+     * Gets the name of the hideout.
+     * @return The name of the hideout.
+     */
+    public String getName() {
+        return this.name;
     }
 
     /**
