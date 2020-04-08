@@ -4,8 +4,16 @@
 # Log file
 *.log
 
-# BlueJ files
-*.ctxt
+# Intellij files
+/.idea
+.iml
+
+# Gradle files
+/.gradle
+/build
+
+# Wrapper file included for TravisCL
+!/gradle/wrapper/gradle-wrapper.jar
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
