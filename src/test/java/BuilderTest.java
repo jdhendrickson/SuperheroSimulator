@@ -12,7 +12,7 @@ public class BuilderTest {
      */
     @org.junit.Before
     public void setUp() throws Exception {
-        hideout = new UndergroundCaveBuilder().getHideout();
+        hideout = new UndergroundCaveBuilder("Testing", "Hero").getHideout();
     }
 
     //Check to make sure the parameters are correct
