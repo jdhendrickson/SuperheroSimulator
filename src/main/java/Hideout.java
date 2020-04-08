@@ -13,7 +13,7 @@ public class Hideout implements HideoutPlan {
     private int hiddenness;
 
     /**
-     * Basic constructor
+     * Basic constructor.
      */
     public Hideout(String name, String allegiance) {
         this.name = name;

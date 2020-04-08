@@ -8,6 +8,7 @@ public class Cape implements Person {
     private int armor;
     private int currentHealth;
     private int maxHealth;
+
     /**
      * A basic constructor.
      */
@@ -34,7 +35,7 @@ public class Cape implements Person {
     }
 
     /**
-     * A function to calculate damage dealt to an opponent
+     * A function to calculate damage dealt to an opponent.
      * @return damage dealt. Does not take dodge or armor into account.
      */
     @Override
@@ -88,7 +89,7 @@ public class Cape implements Person {
      * @param health The new amount of health.
      */
     public void setCurrentHealth(int health) {
-        if(health > maxHealth) {
+        if (health > maxHealth) {
             this.currentHealth = maxHealth;
         } else {
             this.currentHealth = health;
@@ -104,7 +105,7 @@ public class Cape implements Person {
     }
 
     /**
-     * A setter for the amount of damage,
+     * A setter for the amount of damage.
      * @param damage The new damage value.
      */
     public void setDamage(int damage) {

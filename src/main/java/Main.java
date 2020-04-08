@@ -9,6 +9,11 @@ import java.util.Random;
 public class Main {
     static Hideout[] heros;
     static Hideout[] villain;
+
+    /**
+     * The main function.
+     * @param args Command line args. Not used.
+     */
     public static void main(String[] args) {
         heros = new Hideout[1];
         villain = new Hideout[1];
@@ -17,7 +22,8 @@ public class Main {
         heros[0].addPerson(hansel);
 
         Person babaYaga = new Cape();//Starting villan
-        villain[0] = new UndergroundCaveBuilder("House On Legs - Buried Edition", "Villain").getHideout();
+        villain[0] = new UndergroundCaveBuilder("House On Legs - Buried Edition",
+                "Villain").getHideout();
         villain[0].addPerson(babaYaga);
 
         Person[] tempPersonArr1;
@@ -25,8 +31,9 @@ public class Main {
         int temp1;
         int temp2;
         Boolean tempBool;
-        for (int i = 1; i < 11; i++) {//Start of a new day
-            if(heros[0].getTeamSize() == 0) {
+        for (int i = 1; i < 11; i++) {
+            //Start of a new day
+            if (heros[0].getTeamSize() == 0) {
                 System.out.println("All heros have died");
                 return;
             }
@@ -40,7 +47,7 @@ public class Main {
                     temp2 = getRandNumbInRange(0, tempPersonArr2.length - 1);//Pick a villain
                     //Fight!
                     tempBool = tempPersonArr1[temp1].fight(tempPersonArr2[temp2]);
-                    if(tempBool) {
+                    if (tempBool) {
                         //The heros won, buff the hero who won with a new power
                         tempPersonArr1[temp1] = new PowerDecorator(tempPersonArr1[temp1],
                                 getRandNumbInRange(0, tempPersonArr2[temp2].getDamage()),
@@ -65,7 +72,7 @@ public class Main {
     }
 
     /**
-     * A way to add a new villain and keep the hideouts working properly
+     * A way to add a new villain and keep the hideouts working properly.
      */
     public static void newVillian() {
         Person tempPerson = new Cape();
@@ -100,17 +107,17 @@ public class Main {
     public static void printTeams() {
         System.out.println("Starting City:");
         System.out.println("\tHeros:");
-        for(int i = 0; i < heros.length; i++) {
+        for (int i = 0; i < heros.length; i++) {
             System.out.println("\t\t" + heros[i].getName());
         }
         System.out.println("\tVillains:");
-        for(int i = 0; i < villain.length; i++) {
+        for (int i = 0; i < villain.length; i++) {
             System.out.println("\t\t" + villain[i].getName());
         }
     }
 
     /**
-     * A method to get a random number in a range
+     * A method to get a random number in a range.
      * @param min The lower bound of the number.
      * @param max The upper bound of the number.
      * @return    The quasi-random number.

@@ -3,12 +3,12 @@ package main.java;
 interface HideoutBuilder {
 
     /**
-     * How durable is the base?
+     * The durability of the base.
      */
     void buildDurability();
 
     /**
-     * How well hidden is the base?
+     * The hiddenness of the base.
      */
     void buildHiddenness();
 

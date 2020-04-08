@@ -11,7 +11,7 @@ public class CapeTest {
     Person testCape;
 
     /**
-     * Set up the basic Cape class
+     * Set up the basic Cape class.
      * @throws Exception There was an error with setting up Junit
      */
     @org.junit.Before

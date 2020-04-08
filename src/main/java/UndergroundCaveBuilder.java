@@ -3,20 +3,26 @@ package main.java;
 public class UndergroundCaveBuilder implements HideoutBuilder {
     private Hideout hideout;
 
+    /**
+     * A constructor for underground cave hideouts.
+     * @param name       The name of the hideout.
+     * @param allegiance The allegiance of the hideout. Hero or villain.
+     */
     public UndergroundCaveBuilder(String name, String allegiance) {
         this.hideout = new Hideout(name, allegiance);
         buildDurability();
         buildHiddenness();
     }
+
     /**
-     * How durable is the base?
+     * The durability of the base.
      */
     public void buildDurability() {
         hideout.setDurability(10);
     }
 
     /**
-     * How well hidden is the base?
+     * The hiddenness of the base.
      */
     public void buildHiddenness() {
         hideout.setHiddenness(10);

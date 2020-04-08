@@ -29,7 +29,7 @@ public class PowerDecorator extends CapeDecorator {
     }
 
     /**
-     * A function to calculate damage dealt to an opponent
+     * A function to calculate damage dealt to an opponent.
      * @return damage dealt. Does not take dodge or armor into account.
      */
     @Override
@@ -90,7 +90,7 @@ public class PowerDecorator extends CapeDecorator {
     }
 
     /**
-     * A setter for the amount of damage,
+     * A setter for the amount of damage.
      * @param damage The new damage value.
      */
     @Override

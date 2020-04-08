@@ -10,8 +10,9 @@ import org.junit.Test;
 
 public class BuilderTest {
     Hideout hideout;
+
     /**
-     * Set up the basic Cape class
+     * Set up the basic Cape class.
      * @throws Exception There was an error with setting up Junit
      */
     @org.junit.Before
@@ -23,7 +24,7 @@ public class BuilderTest {
     @Test
     public void testBasicHideout() {
         assertEquals(10, hideout.getDurability());
-        assertEquals( 10, hideout.getHiddenness());
+        assertEquals(10, hideout.getHiddenness());
         assertTrue("Testing".equals(hideout.getName()));
         assertTrue("Hero".equals(hideout.getAllegiance()));
     }
