@@ -2,14 +2,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import main.java.Mediator;
-import main.java.Student;
-import main.java.Teacher;
-
 import org.junit.Test;
 
 public class CapeTest {
-    Cape testCape;
+    Person testCape;
 
     /**
      * Set up the basic Cape class
@@ -25,7 +21,19 @@ public class CapeTest {
     public void testDamage() {
         assertEquals(1, testCape.getDamageDealt());
         assertFalse(testCape.takeDamage(1));
-        assertEquals(4, testCape.getHealth());
+        assertEquals(4, testCape.getCurrentHealth());
+        assertTrue(testCape.takeDamage(10));
+    }
+
+    //A test for changing the values of the cape via decorators
+    @Test
+    public void basicDecoratorTest() {
+        testCape = new PowerDecorator(testCape, 2, 1, 1, 7);
+        assertEquals(2, testCape.getDamageDealt());
+        assertFalse(testCape.takeDamage(1));
+        assertEquals(7, testCape.getCurrentHealth());
+        assertFalse(testCape.takeDamage(3));
+        assertEquals(6, testCape.getCurrentHealth());
         assertTrue(testCape.takeDamage(10));
     }
 }
