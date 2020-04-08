@@ -32,6 +32,17 @@ public class Hideout implements HideoutPlan {
     }
 
     /**
+     * The team from this hideout fights with the team from an opposing hideout.
+     * @param opponent The opposing hideout.
+     * @return         Did the opponent loose?
+     */
+    boolean fight(Hideout opponent) {
+        boolean ret = false;
+
+        return ret;
+    }
+
+    /**
      * Sets the durabilty of the material being used.
      * @param in The durability of the material used.
      */
@@ -77,5 +88,41 @@ public class Hideout implements HideoutPlan {
      */
     public int getTeamSize() {
         return team.length;
+    }
+
+    /**
+     * Gets the total damage of the entire team.
+     * @return The total health of the team.
+     */
+    int getTotalDamage() {
+        int temp = 0;
+        for(int i = 0; i <  getTeamSize(); i++) {
+            temp += this.team[i].getDamageDealt();
+        }
+        return temp;
+    }
+
+    /**
+     * Gets the total defense of the entire team.
+     * @return The total defense of the team.
+     */
+    int getTotalDefense() {
+        int temp = 0;
+        for(int i = 0; i <  getTeamSize(); i++) {
+            temp += this.team[i].getArmor() + this.team[i].getDodge();
+        }
+        return temp;
+    }
+
+    /**
+     * Gets the total current health of the entire team.
+     * @return The total health of the team.
+     */
+    int getTotalHealth() {
+        int temp = 0;
+        for(int i = 0; i <  getTeamSize(); i++) {
+            temp += this.team[i].getCurrentHealth();
+        }
+        return temp;
     }
 }
