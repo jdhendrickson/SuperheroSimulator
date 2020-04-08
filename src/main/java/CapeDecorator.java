@@ -1,11 +1,11 @@
 public abstract class CapeDecorator implements Person {
-    protected Cape cape;
+    protected Person cape;
 
     /**
      * A basic cape decorator.
      * @param cape The cape to be decorated.
      */
-    public CapeDecorator(Cape cape) {
+    public CapeDecorator(Person cape) {
         this.cape = cape;
     }
 }
