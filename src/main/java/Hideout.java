@@ -1,5 +1,7 @@
 public class Hideout implements HideoutPlan {
     private Person[] team;
+    private int durability;
+    private int hiddenness;
 
     /**
      * Add a new person.
@@ -19,6 +21,22 @@ public class Hideout implements HideoutPlan {
             team = new Person[1];
             team[0] = in;
         }
+    }
+
+    /**
+     * Sets the durabilty of the material being used.
+     * @param in The durability of the material used.
+     */
+    public void setDurability(int in) {
+        this.durability = in;
+    }
+
+    /**
+     * Sets the hiddenness of the location of the base.
+     * @param in The hiddenness of the base.
+     */
+    public void setHiddenness(int in) {
+        this.hiddenness = in;
     }
 
     /**
