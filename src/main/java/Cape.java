@@ -22,7 +22,7 @@ public class Cape implements Person {
      * @param opponent The opposing cape.
      * @return         Did the opponent loose?
      */
-    boolean fight(Cape opponent) {
+    public boolean fight(Person opponent) {
         int i = 0;//Iterator to make sure there will be an exit condition
         while (this.currentHealth > 0 && opponent.getCurrentHealth() > 0 && i < 25) {
             opponent.takeDamage(this.getDamageDealt());

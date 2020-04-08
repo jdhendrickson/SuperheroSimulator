@@ -1,6 +1,13 @@
 interface Person {
 
     /**
+     * A way for a cape to fight another cape.
+     * @param opponent The opposing cape.
+     * @return         Did the opponent loose?
+     */
+    boolean fight(Person opponent);
+
+    /**
      * A function to calculate damage dealt to an opponent
      * @return damage dealt. Does not take dodge or armor into account.
      */

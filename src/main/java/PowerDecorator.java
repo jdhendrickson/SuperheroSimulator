@@ -18,6 +18,15 @@ public class PowerDecorator extends CapeDecorator {
     }
 
     /**
+     * A way for a cape to fight another cape.
+     * @param opponent The opposing cape.
+     * @return         Did the opponent loose?
+     */
+    public boolean fight(Person opponent) {
+        return this.cape.fight(opponent);
+    }
+
+    /**
      * A function to calculate damage dealt to an opponent
      * @return damage dealt. Does not take dodge or armor into account.
      */
