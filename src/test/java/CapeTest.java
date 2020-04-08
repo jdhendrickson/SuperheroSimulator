@@ -29,7 +29,7 @@ public class CapeTest {
     @Test
     public void basicDecoratorTest() {
         testCape = new PowerDecorator(testCape, 2, 1, 1, 7);
-        assertEquals(2, testCape.getDamageDealt());
+        assertEquals(3, testCape.getDamageDealt());
         assertFalse(testCape.takeDamage(1));
         assertEquals(7, testCape.getCurrentHealth());
         assertFalse(testCape.takeDamage(3));

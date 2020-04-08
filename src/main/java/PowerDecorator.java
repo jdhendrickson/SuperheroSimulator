@@ -3,18 +3,18 @@ import static java.lang.Math.floor;
 public class PowerDecorator extends CapeDecorator {
     /**
      * A cape decorator thing.
-     * @param impDam    The new damage value.
-     * @param impDodge  The new dodge value.
-     * @param impArm    The new armor value.
-     * @param impHealth The new health value.
+     * @param impDam    The damage value to add to the current one.
+     * @param impDodge  The dodge value to add to the current one.
+     * @param impArm    The armor value to add to the current one.
+     * @param impHealth The health value to add to the current one.
      */
     public PowerDecorator(Person cape, int impDam, int impDodge, int impArm, int impHealth) {
         super(cape);
-        cape.setDamage(impDam);
-        cape.setDodge(impDodge);
-        cape.setArmor(impArm);
-        cape.setMaxHealth(impHealth);
-        cape.setCurrentHealth(impHealth);
+        cape.setDamage(impDam + cape.getDamage());
+        cape.setDodge(impDodge + cape.getDodge());
+        cape.setArmor(impArm + cape.getArmor());
+        cape.setMaxHealth(impHealth  + cape.getMaxHealth());
+        cape.setCurrentHealth(cape.getMaxHealth());
     }
 
     /**
