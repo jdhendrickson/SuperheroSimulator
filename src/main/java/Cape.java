@@ -47,9 +47,11 @@ public class Cape implements Person {
     @Override
     public boolean takeDamage(int in) {
         int dam = in;
-        dam -= floor(dodge / 2);
-        dam -= floor(armor / 2);
-        currentHealth -= dam;
+        dam -= floor(dodge);
+        dam -= floor(armor);
+        if (dam > 0) {
+            currentHealth -= dam;
+        }
         return currentHealth <= 0;
     }
 

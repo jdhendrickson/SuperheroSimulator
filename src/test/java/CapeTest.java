@@ -28,7 +28,7 @@ public class CapeTest {
     //A test for changing the values of the cape via decorators
     @Test
     public void basicDecoratorTest() {
-        testCape = new PowerDecorator(testCape, 2, 1, 1, 7);
+        testCape = new PowerDecorator(testCape, 2, 1, 1, 2);
         assertEquals(3, testCape.getDamageDealt());
         assertFalse(testCape.takeDamage(1));
         assertEquals(7, testCape.getCurrentHealth());
