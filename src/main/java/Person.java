@@ -14,5 +14,5 @@ interface Person {
     /**
      * A getter for health
      */
-    int getHealth();
+    int getCurrentHealth();
 }
