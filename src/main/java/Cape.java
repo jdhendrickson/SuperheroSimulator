@@ -16,6 +16,7 @@ public class Cape implements Person {
         maxHealth = 5;
         currentHealth = maxHealth;
     }
+
     /**
      * A function to calculate damage dealt to an opponent
      * @return damage dealt. Does not take dodge or armor into account.
@@ -112,7 +113,7 @@ public class Cape implements Person {
      * A getter for the max amount of health.
      * @return The maximum amount of health.
      */
-    public int setMaxHealth() {
+    public int getMaxHealth() {
         return maxHealth;
     }
 
