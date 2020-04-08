@@ -36,4 +36,28 @@ public class CapeTest {
         assertEquals(6, testCape.getCurrentHealth());
         assertTrue(testCape.takeDamage(10));
     }
+
+    //A test for testing healing and regens
+    @Test
+    public void testHealing() {
+        testCape.setCurrentHealth(100);
+        assertEquals(5, testCape.getCurrentHealth());
+        testCape.takeDamage(50);
+        testCape.setCurrentHealth(100);
+        assertEquals(5, testCape.getCurrentHealth());
+        testCape.setCurrentHealth(5);
+        assertEquals(5, testCape.getCurrentHealth());
+    }
+
+    //A test for testing the fighting functions
+    @Test
+    public void testFighting() {
+        Person opponent = new Cape();
+        assertTrue(testCape.fight(opponent));
+        opponent = new PowerDecorator(opponent, 10, 10, 0, 10);
+        assertFalse(testCape.fight(opponent));
+        testCape = new PowerDecorator(testCape, 50, 50, 50, 50);
+        assertTrue(testCape.fight(opponent));
+
+    }
 }
