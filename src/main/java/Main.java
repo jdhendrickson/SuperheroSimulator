@@ -45,29 +45,36 @@ public class Main {
                 for (int k = 0; k < villain.length; k++) {
                     tempPersonArr2 = villain[k].getTeam();//Get a villan team
                     temp1 = getRandNumbInRange(0, tempPersonArr1.length - 1);//Pick a hero
+                    System.out.print("Hero " + tempPersonArr1[temp1].getName());
                     temp2 = getRandNumbInRange(0, tempPersonArr2.length - 1);//Pick a villain
+                    System.out.print(" vs Villian " + tempPersonArr2[temp2].getName());
+                    System.out.print("\n");
                     //Fight!
                     tempBool = tempPersonArr1[temp1].fight(tempPersonArr2[temp2]);
                     if (tempBool) {
                         //The heros won, buff the hero who won with a new power
-                        System.out.println("Heros won a battle");
+                        System.out.println("\tHeros won the battle");
                         tempPersonArr1[temp1] = new PowerDecorator(tempPersonArr1[temp1],
                                 getRandNumbInRange(0, tempPersonArr2[temp2].getDamage()),
                                 getRandNumbInRange(0, tempPersonArr2[temp2].getDodge()),
                                 getRandNumbInRange(0, tempPersonArr2[temp2].getArmor()),
                                 getRandNumbInRange(0, tempPersonArr2[temp2].getArmor()));
                         //Kill the loosing villan
-                        villain[k].removePerson(tempPersonArr2[temp2]);
+                        if (villain[k].getTeamSize() > 0) {
+                            villain[k].removePerson(tempPersonArr2[temp2]);
+                        }
                         //Add a new villain
                         newVillian();
                     } else {
-                        System.out.println("Heros lost a battle");
+                        System.out.println("\tHeros lost the battle");
                         tempPersonArr2[temp2] = new PowerDecorator(tempPersonArr2[temp2],
                                 getRandNumbInRange(0, tempPersonArr1[temp1].getDamage()),
                                 getRandNumbInRange(0, tempPersonArr1[temp1].getDodge()),
                                 getRandNumbInRange(0, tempPersonArr1[temp1].getArmor()),
                                 getRandNumbInRange(0, tempPersonArr1[temp1].getArmor()));
-                        heros[k].removePerson(tempPersonArr1[temp1]);
+                        if (heros[j].getTeamSize() > 0) {
+                            heros[j].removePerson(tempPersonArr1[temp1]);
+                        }
                     }
                 }
             }
