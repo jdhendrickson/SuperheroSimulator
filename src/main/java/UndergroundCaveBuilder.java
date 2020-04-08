@@ -3,6 +3,8 @@ public class UndergroundCaveBuilder implements HideoutBuilder {
 
     public UndergroundCaveBuilder(String name, String allegiance) {
         this.hideout = new Hideout(name, allegiance);
+        buildDurability();
+        buildHiddenness();
     }
     /**
      * How durable is the base?

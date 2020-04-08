@@ -19,5 +19,8 @@ public class BuilderTest {
     @Test
     public void testBasicHideout() {
         assertEquals(10, hideout.getDurability());
+        assertEquals( 10, hideout.getHiddenness());
+        assertTrue("Testing".equals(hideout.getName()));
+        assertTrue("Hero".equals(hideout.getAllegiance()));
     }
 }
