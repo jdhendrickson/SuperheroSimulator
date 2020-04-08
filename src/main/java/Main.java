@@ -31,7 +31,10 @@ public class Main {
         int temp1;
         int temp2;
         Boolean tempBool;
-        for (int i = 1; i < 11; i++) {
+        int i = 0;//Iterator. Is used to determine the number of battles.
+        while (heros[0].getTeamSize()>0 && i < 5000) {
+            //Number of battles is cut off at 5000 due to cpu speed concerns.
+            i++;
             //Start of a new day
             if (heros[0].getTeamSize() == 0) {
                 System.out.println("All heros have died");
@@ -49,6 +52,7 @@ public class Main {
                     tempBool = tempPersonArr1[temp1].fight(tempPersonArr2[temp2]);
                     if (tempBool) {
                         //The heros won, buff the hero who won with a new power
+                        System.out.println("Heros won a battle");
                         tempPersonArr1[temp1] = new PowerDecorator(tempPersonArr1[temp1],
                                 getRandNumbInRange(0, tempPersonArr2[temp2].getDamage()),
                                 getRandNumbInRange(0, tempPersonArr2[temp2].getDodge()),
@@ -59,6 +63,7 @@ public class Main {
                         //Add a new villain
                         newVillian();
                     } else {
+                        System.out.println("Heros lost a battle");
                         tempPersonArr2[temp2] = new PowerDecorator(tempPersonArr2[temp2],
                                 getRandNumbInRange(0, tempPersonArr1[temp1].getDamage()),
                                 getRandNumbInRange(0, tempPersonArr1[temp1].getDodge()),
