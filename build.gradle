@@ -26,6 +26,7 @@ repositories {
 dependencies {
 	compile "junit:junit:4.12"
 	compile files('cls/')
+	compile 'org.json:json:20171018'
 }
 ///Testing conditions//////////////////////////////////////////////////
 test {
