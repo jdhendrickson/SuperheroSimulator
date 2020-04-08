@@ -7,6 +7,13 @@ interface HideoutPlan {
     void addPerson(Person in);
 
     /**
+     * A method to remove a specified person from the list of people.
+     * @param in The person to remove.
+     * @return   Was the person removed sucessfully?
+     */
+    boolean removePerson(Person in);
+
+    /**
      * Sets the durabilty of the material being used.
      * @param in The durability of the material used.
      */

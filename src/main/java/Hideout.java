@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class Hideout implements HideoutPlan {
     private String name;
     private String allegiance;
@@ -33,6 +38,22 @@ public class Hideout implements HideoutPlan {
             team = new Person[1];
             team[0] = in;
         }
+    }
+
+    /**
+     * A method to remove a specified person from the list of people.
+     * @param in The person to remove.
+     * @return   Was the person removed sucessfully?
+     */
+    public boolean removePerson(Person in) {
+        //Convert the array into an ArrayList
+        List<Person> list = new ArrayList<>();
+        Collections.addAll(list, team);
+        //Remove all instances of the input Student
+        list.removeAll(Arrays.asList(in));
+        //Convert back into an array
+        team = list.toArray(new Person[list.size()]);
+        return true;
     }
 
     /**
