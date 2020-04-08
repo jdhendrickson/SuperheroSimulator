@@ -133,4 +133,12 @@ public class PowerDecorator extends CapeDecorator {
     public void setMaxHealth(int health) {
         cape.setMaxHealth(health);
     }
+
+    /**
+     * A getter for the person's name.
+     * @return The name of the person.
+     */
+    public String getName() {
+        return cape.getName();
+    }
 }

@@ -8,6 +8,7 @@ public class Cape implements Person {
     private int armor;
     private int currentHealth;
     private int maxHealth;
+    private String name;
 
     /**
      * A basic constructor.
@@ -18,6 +19,16 @@ public class Cape implements Person {
         armor = 0;
         maxHealth = 5;
         currentHealth = maxHealth;
+        name = "Default name";
+    }
+
+    /**
+     * A constructor that includes the cape's name.
+     * @param name The name of the cape.
+     */
+    public Cape(String name) {
+        this();
+        this.name = name;
     }
 
     /**
@@ -142,5 +153,13 @@ public class Cape implements Person {
      */
     public void setMaxHealth(int health) {
         this.maxHealth = health;
+    }
+
+    /**
+     * A getter for the person's name.
+     * @return The name of the person.
+     */
+    public String getName() {
+        return name;
     }
 }

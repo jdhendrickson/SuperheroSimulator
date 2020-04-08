@@ -80,4 +80,10 @@ public interface Person {
      * @param health The new maximum amount of health.
      */
     void setMaxHealth(int health);
+
+    /**
+     * A getter for the person's name.
+     * @return The name of the person.
+     */
+    String getName();
 }
