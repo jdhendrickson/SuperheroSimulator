@@ -32,7 +32,7 @@ public class Main {
         int temp2;
         Boolean tempBool;
         int i = 0;//Iterator. Is used to determine the number of battles.
-        while (heros[0].getTeamSize()>0 && i < 5000) {
+        while (heros[0].getTeamSize() > 0 && i < 5000) {
             //Number of battles is cut off at 5000 due to cpu speed concerns.
             i++;
             //Start of a new day
