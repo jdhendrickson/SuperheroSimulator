@@ -35,4 +35,12 @@ public class Cape implements Person {
         health -= dam;
         return health <= 0;
     }
+
+    /**
+     * A getter for health
+     */
+    @Override
+    public int getHealth() {
+        return health;
+    }
 }
