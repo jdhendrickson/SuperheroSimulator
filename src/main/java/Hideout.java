@@ -110,7 +110,7 @@ public class Hideout implements HideoutPlan {
      * @return The list of team members.
      */
     public Person[] getTeam() {
-        return team;
+        return team.clone();
     }
 
     /**
