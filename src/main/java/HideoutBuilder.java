@@ -10,4 +10,9 @@ interface HideoutBuilder {
      */
     void buildHiddenness();
 
+    /**
+     * Return the built hideout.
+     * @Return The built hideout.
+     */
+    Hideout getHideout();
 }

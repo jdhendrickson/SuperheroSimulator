@@ -17,4 +17,12 @@ public class UndergroundCaveBuilder implements HideoutBuilder {
     public void buildHiddenness() {
         hideout.setHiddenness(10);
     }
+
+    /**
+     * Return the built hideout.
+     * @Return The built hideout.
+     */
+    public Hideout getHideout() {
+        return this.hideout;
+    }
 }
