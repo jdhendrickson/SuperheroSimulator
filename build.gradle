@@ -1,16 +1,69 @@
 plugins {
-    id 'java'
+	id "com.github.spotbugs" version "3.0.0"
+	id "checkstyle"
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+apply plugin: 'application'
+apply plugin: 'jacoco'
 
-sourceCompatibility = 1.8
 
+mainClassName = 'main.java.Main'
+
+sourceSets {
+	main {
+		java{
+			srcDirs=['src']
+		}
+	}
+}
+
+// In this section you declare where to find the dependencies of your project
 repositories {
-    mavenCentral()
+	jcenter()
 }
 
+// In this section you declare the dependencies for your production and test code
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+	compile "junit:junit:4.12"
+	compile files('cls/')
+}
+///Testing conditions//////////////////////////////////////////////////
+test {
+	useJUnit()
+}
+///////////////////////////////////////////////////////////////////////
+// Configure Checkstyle
+/////////////////////////////////////////////////////////////////////
+apply plugin: 'checkstyle'
+checkstyle {
+	// Keep checkstyle a little quieter
+	ignoreFailures = true
+	showViolations = false
+}
+
+tasks.withType(Checkstyle) {
+	reports {
+		html.enabled = true
+		xml.enabled = false
+	}
+}
+checkstyle {
+	toolVersion = "8.8"
+}
+
+
+/////////////////////////////////////////////////////////////////////////
+// Configure SpotBugs
+/////////////////////////////////////////////////////////////////////////
+// To generate an HTML report instead of XML
+tasks.withType(com.github.spotbugs.SpotBugsTask) {
+	reports {
+		xml.enabled = false
+		html.enabled = true
+	}
+}
+//Ignore spotbugs warnings
+spotbugs {
+	toolVersion = '4.0.0'
+	ignoreFailures = true
 }
