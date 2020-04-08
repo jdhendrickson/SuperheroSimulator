@@ -1,10 +1,17 @@
 package main.java;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
 public class Main {
     static Hideout[] heros;
@@ -15,16 +22,7 @@ public class Main {
      * @param args Command line args. Not used.
      */
     public static void main(String[] args) {
-        heros = new Hideout[1];
-        villain = new Hideout[1];
-        Person hansel = new Cape();//Starting hero
-        heros[0] = new UndergroundCaveBuilder("Hansel's Home", "Hero").getHideout();
-        heros[0].addPerson(hansel);
-
-        Person babaYaga = new Cape();//Starting villan
-        villain[0] = new UndergroundCaveBuilder("House On Legs - Buried Edition",
-                "Villain").getHideout();
-        villain[0].addPerson(babaYaga);
+        initFromJson("SecondCityExample.json");
 
         Person[] tempPersonArr1;
         Person[] tempPersonArr2;
@@ -137,5 +135,91 @@ public class Main {
 
         Random r = new Random();
         return r.nextInt((max - min) + 1) + min;
+    }
+
+    /**
+     * Init the heros and cities from a Json file.
+     * @param file The json file to parse.
+     */
+    public static void initFromJson(String file) {
+        String jsonString = readFile(file);
+        String name;
+        JSONObject jsonObj = new JSONObject(jsonString);
+        JSONObject hideoutObj;
+        JSONObject capeObj;
+        JSONArray heroHideoutArr;
+        JSONArray capeArr;
+        JSONArray mainArr = jsonObj.getJSONArray("City");
+        int damage;
+        int dodge;
+        int armor;
+        int health;
+        //Deal with the heros
+        //Get the hero hideout arr
+        heroHideoutArr = mainArr.getJSONObject(0).getJSONArray("Hero Hideouts");
+        heros = new Hideout[heroHideoutArr.length()];
+        for (int i = 0; i < heroHideoutArr.length(); i++) {
+            hideoutObj = heroHideoutArr.getJSONObject(i);
+            name = hideoutObj.getString("Name");
+            if (hideoutObj.getString("Type").equals("UndergroundCave")) {
+                heros[i] = new UndergroundCaveBuilder(name, "Hero").getHideout();
+            }
+            capeArr = hideoutObj.getJSONArray("Capes");
+            //Populate the hideout
+            for (int j = 0; j < capeArr.length(); j++) {
+                capeObj = capeArr.getJSONObject(j);
+                name = capeObj.optString("Name", "Default Name");
+                damage = capeObj.optInt("Damage", 1);
+                dodge = capeObj.optInt("Dodge", 0);
+                armor = capeObj.optInt("Armor", 0);
+                health = capeObj.optInt("Health", 5);
+                heros[i].addPerson(new Cape(name, damage, dodge, armor, health));
+            }
+        }
+
+        //Deal with the Villains
+        //Get the villain hideout arr
+        JSONArray villainHideoutArr = mainArr.getJSONObject(1).getJSONArray("Villain Hideouts");
+        villain = new Hideout[villainHideoutArr.length()];
+        for (int i = 0; i < villainHideoutArr.length(); i++) {
+            hideoutObj = villainHideoutArr.getJSONObject(i);
+            name = hideoutObj.getString("Name");
+            if (hideoutObj.getString("Type").equals("UndergroundCave")) {
+                villain[i] = new UndergroundCaveBuilder(name, "Hero").getHideout();
+            }
+            capeArr = hideoutObj.getJSONArray("Capes");
+            //Populate the hideout
+            for (int j = 0; j < capeArr.length(); j++) {
+                capeObj = capeArr.getJSONObject(j);
+                name = capeObj.optString("Name", "Default Name");
+                damage = capeObj.optInt("Damage", 1);
+                dodge = capeObj.optInt("Dodge", 0);
+                armor = capeObj.optInt("Armor", 0);
+                health = capeObj.optInt("Health", 5);
+                villain[i].addPerson(new Cape(name, damage, dodge, armor, health));
+            }
+        }
+    }
+
+    /**
+     * A function to read a file.
+     * @param in The name of the file.
+     * @return   The contents of the file.
+     */
+    public static String readFile(String in) {
+        System.out.println("The file being read is:" + in);
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(in));
+            String out = "";
+            String read;
+            while ((read = reader.readLine()) != null) {
+                out += read;
+            }
+            reader.close();
+            return out;
+        } catch (IOException e) {
+            System.out.println("There was an exception while reading " + in);
+        }
+        return "";
     }
 }
