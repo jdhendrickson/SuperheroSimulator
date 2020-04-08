@@ -13,7 +13,8 @@ public class Cape implements Person {
         damage = 1;
         dodge = 0;
         armor = 0;
-        health = 5;
+        maxHealth = 5;
+        currentHealth = maxHealth;
     }
     /**
      * A function to calculate damage dealt to an opponent
@@ -33,8 +34,8 @@ public class Cape implements Person {
         int dam = in;
         dam -= floor(dodge / 2);
         dam -= floor(armor / 2);
-        health -= dam;
-        return health <= 0;
+        currentHealth -= dam;
+        return currentHealth <= 0;
     }
 
     /**
