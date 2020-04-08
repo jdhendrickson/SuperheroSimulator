@@ -23,4 +23,17 @@ public class BuilderTest {
         assertTrue("Testing".equals(hideout.getName()));
         assertTrue("Hero".equals(hideout.getAllegiance()));
     }
+
+    //Test adding a person
+    @Test
+    public void testAddAndRemoveTeammates() {
+        Person temp = new Cape();
+        hideout.addPerson(temp);
+        assertEquals(1, hideout.getTeamSize());
+        hideout.removePerson(temp);
+        assertEquals(0, hideout.getTeamSize());
+        hideout.addPerson(temp);
+        hideout.addPerson(new Cape());
+        assertEquals(2, hideout.getTeamSize());
+    }
 }
