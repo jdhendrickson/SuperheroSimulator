@@ -1,0 +1,46 @@
+{
+  "City":
+  [
+    {
+      "Hero Hideouts": [
+        {
+          "Name": "Hansel's House",
+          "Type": "UndergroundCave",
+          "Capes": [
+            {
+              "Name": "Hansel",
+              "Damage": 1,
+              "Dodge": 0,
+              "Armor": 0,
+              "MaxHealth": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Villain Hideouts": [
+        {
+          "Name": "Witch's Lair",
+          "Type": "UndergroundCave",
+          "Capes": [
+            {
+              "Name": "Baba Yaga",
+              "Damage": 10,
+              "Dodge": 0,
+              "Armor": 2,
+              "MaxHealth": 10
+            },
+            {
+              "Name": "Candyhouse Witch",
+              "Damage": 1,
+              "Dodge": 0,
+              "Armor": 0,
+              "MaxHealth": 5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
