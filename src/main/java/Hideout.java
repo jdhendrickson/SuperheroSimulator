@@ -4,6 +4,14 @@ public class Hideout implements HideoutPlan {
     private int hiddenness;
 
     /**
+     * Basic constructor
+     */
+    public Hideout() {
+        durability = 0;
+        hiddenness = 0;
+    }
+
+    /**
      * Add a new person.
      * @param in The new person to add.
      */
