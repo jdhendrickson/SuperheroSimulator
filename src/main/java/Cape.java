@@ -14,11 +14,11 @@ public class Cape implements Person {
      * A basic constructor.
      */
     public Cape() {
-        damage = 1;
-        dodge = 0;
-        armor = 0;
-        maxHealth = 5;
-        currentHealth = maxHealth;
+        this.damage = 1;
+        this.dodge = 0;
+        this.armor = 0;
+        this.maxHealth = 5;
+        this.currentHealth = maxHealth;
         name = "Default name";
     }
 
@@ -28,6 +28,23 @@ public class Cape implements Person {
      */
     public Cape(String name) {
         this();
+        this.name = name;
+    }
+
+    /**
+     * A constructor that includes everything about a cape.
+     * @param name      The name of the cape.
+     * @param damage    How much damage the cape can deal.
+     * @param dodge     How much damage the cape can dodge.
+     * @param armor     How much armor the cape starts with.
+     * @param maxHealth How much health the cape starts with.
+     */
+    public Cape(String name, int damage, int dodge, int armor, int maxHealth) {
+        this.damage = damage;
+        this.dodge = dodge;
+        this.armor = armor;
+        this.maxHealth = maxHealth;
+        this.currentHealth = maxHealth;
         this.name = name;
     }
 
