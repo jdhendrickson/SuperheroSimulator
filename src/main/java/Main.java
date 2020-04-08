@@ -3,6 +3,8 @@ package main.java;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -219,7 +221,7 @@ public class Main {
     public static String readFile(String in) {
         System.out.println("The file being read is:" + in);
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(in));
+            BufferedReader reader = new BufferedReader(new FileReader(in, StandardCharsets.UTF_8));
             String out = "";
             String read;
             while ((read = reader.readLine()) != null) {
