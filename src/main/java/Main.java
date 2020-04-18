@@ -283,4 +283,26 @@ public class Main {
         return "";
     }
 
+    /**
+     * Prints the end of simulation message.
+     *
+     * @param in What message to be printed.
+     *           0 - Tie.
+     *           1 - Hero.
+     *           2 - Villain.
+     */
+    public static void printAgeOf(int in) {
+        if (in == 0) {
+            System.out.println("Simulation stopped due to reaching the maximum number of days.");
+            System.out.println("The heros and villains are evenly matched.");
+        } else if (in == 1) {
+            System.out.println("All the villains have died");
+            System.out.println("The heros have triumphed.");
+            System.out.println("An age of light has begun.");
+        } else if (in == 2) {
+            System.out.println("All the heros have died");
+            System.out.println("The villains have triumphed.");
+            System.out.println("An age of darkness has begun.");
+        }
+    }
 }
