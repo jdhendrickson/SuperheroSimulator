@@ -27,7 +27,7 @@ public class Main {
      */
     public static void main(String[] args) {
         if (args.length > 0) {
-            initFromJson(args[1]);
+            initFromJson(args[0]);
         } else {
             initFromJson("SecondCityExample.json");
         }
