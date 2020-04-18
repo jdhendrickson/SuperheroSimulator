@@ -70,7 +70,7 @@ public class Main {
                     }
                 }
             }
-            if(villains.length <= numbOfHideouts) {
+            if (villains.length <= numbOfHideouts) {
                 //Villains spawn
                 newVillain();
             }
@@ -90,23 +90,23 @@ public class Main {
         boolean tempBool = person1.fight(person2);
         if (tempBool) {
             //The heros won, buff the hero who won with a new power
-            System.out.println("\t" + person1.getName() + " won the battle");
             person1 = new PowerDecorator(person1,
                     getRandNumbInRange(0, person2.getDamage()),
                     getRandNumbInRange(0, person2.getDodge()),
                     getRandNumbInRange(0, person2.getArmor()),
                     getRandNumbInRange(0, person2.getArmor()));
+            System.out.println("\t" + person1.getName() + " won the battle");
             //Kill the looser
             if (hideout2.getTeamSize() > 0) {
                 hideout2.removePerson(person2);
             }
         } else {
-            System.out.println("\t" + person2.getName() + " won the battle");
             person2 = new PowerDecorator(person2,
                     getRandNumbInRange(0, person1.getDamage()),
                     getRandNumbInRange(0, person1.getDodge()),
                     getRandNumbInRange(0, person1.getArmor()),
                     getRandNumbInRange(0, person1.getArmor()));
+            System.out.println("\t" + person2.getName() + " won the battle");
             //Kill the looser
             if (hideout1.getTeamSize() > 0) {
                 hideout1.removePerson(person1);
@@ -141,7 +141,7 @@ public class Main {
      */
     public static boolean areSupersAlive(int in) {
         boolean out = false;
-        Hideout temp[] = new Hideout[0];
+        Hideout[] temp = new Hideout[0];
         if (in == 0) {
             //Check both heros and villains
             if (areSupersAlive(1)) {
@@ -191,16 +191,16 @@ public class Main {
         for (int i = 0; i < villains.length; i++) {
             if (villains[i].getTeamSize() > 5) {
                 //Needs to be split
-                tempHideout = new Hideout[villains.length +1];
+                tempHideout = new Hideout[villains.length + 1];
                 for (int j = 0; j < villains.length; j++) {
                     tempHideout[j] = villains[j];
                 }
                 tempHideout[villains.length] = new Hideout("New hideout", "villain");
                 //Move half the capes to the new hideout
                 //Add the half to be moved to the new hideout
-                for (int j = 0; j < (villains[i].getTeamSize()/2); j++) {
+                for (int j = 0; j < (villains[i].getTeamSize() / 2); j++) {
                     tempCape = villains[i].getTeam()[j];
-                    tempHideout[villains.length] .addPerson(tempCape);
+                    tempHideout[villains.length].addPerson(tempCape);
                 }
                 //Remove them from the original hideout
                 for (int j = 0; j < tempHideout[villains.length].getTeamSize(); j++) {
