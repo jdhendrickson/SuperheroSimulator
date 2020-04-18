@@ -53,6 +53,8 @@ public class Main {
                     System.out.print("\n");
                     //Fight!
                     fight(hero, hideoutHeros, villain, hideoutVillains);
+                    //Remove empty hideouts
+                    cleanHideoutList();
                     //Check if all heros are dead
                     if (!areSupersAlive(1)) {
                         //All heros are dead
@@ -65,8 +67,6 @@ public class Main {
                         printAgeOf(1);//Heros won
                         return;
                     }
-                    //Remove empty hideouts
-                    cleanHideoutList();
                     //Add a new villain
                     newVillain();
                 }
@@ -343,6 +343,9 @@ public class Main {
      *           2 - Villain.
      */
     public static void printAgeOf(int in) {
+        System.out.println("--------------");
+        System.out.println("End of simulation hideouts:");
+        printTeams();
         System.out.println("--------------");
         if (in == 0) {
             System.out.println("Simulation stopped due to reaching " + numbOfDays + " days.");
