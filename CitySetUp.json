@@ -1,4 +1,6 @@
 {
+  "Max Days": 5,
+  "Hideouts Per City": 10,
   "City":
   [
     {
