@@ -169,7 +169,7 @@ public class Main {
         Person tempPerson;
         int i = 0;
         while (i < villains.length) {
-            numAdded = getRandNumbInRange(0,3);
+            numAdded = getRandNumbInRange(0,2);
             for (int j = 0; j < numAdded; j++) {
                 tempPerson = new Cape();
                 villains[i].addPerson(tempPerson);
