@@ -311,6 +311,7 @@ public class Main {
      *           2 - Villain.
      */
     public static void printAgeOf(int in) {
+        System.out.println("--------------");
         if (in == 0) {
             System.out.println("Simulation stopped due to reaching " + numbOfDays + " days.");
             System.out.println("The heros and villains are evenly matched.");
@@ -323,5 +324,6 @@ public class Main {
             System.out.println("The villains have triumphed.");
             System.out.println("An age of darkness has begun.");
         }
+        System.out.println("Game Over");
     }
 }
