@@ -169,21 +169,45 @@ public class Main {
         Person tempPerson;
         int i = 0;
         while (i < villains.length) {
-            numAdded = getRandNumbInRange(0,2);
+            numAdded = getRandNumbInRange(0,3);
             for (int j = 0; j < numAdded; j++) {
                 tempPerson = new Cape();
                 villains[i].addPerson(tempPerson);
             }
             i++;
         }
+        splitVillainHideouts();
     }
 
     /**
-     * Split a hideout list into hideouts of teamsize < 5.
+     * Split the villain hideout list into hideouts of teamsize < 5.
      *
-     * @param in The hideout list to change.
      */
-    public static void splitHideouts(Hideout[] in) {
+    public static void splitVillainHideouts() {
+        Hideout[] tempHideout;
+        Person tempCape;
+        for (int i = 0; i < villains.length; i++) {
+            if (villains[i].getTeamSize() > 5) {
+                //Needs to be split
+                tempHideout = new Hideout[villains.length +1];
+                for (int j = 0; j < villains.length; j++) {
+                    tempHideout[j] = villains[j];
+                }
+                tempHideout[villains.length] = new Hideout("New hideout", "villain");
+                //Move half the capes to the new hideout
+                //Add the half to be moved to the new hideout
+                for (int j = 0; j < (villains[i].getTeamSize()/2); j++) {
+                    tempCape = villains[i].getTeam()[j];
+                    tempHideout[villains.length] .addPerson(tempCape);
+                }
+                //Remove them from the original hideout
+                for (int j = 0; j < tempHideout[villains.length].getTeamSize(); j++) {
+                    tempCape = tempHideout[villains.length].getTeam()[j];
+                    tempHideout[i].removePerson(tempCape);
+                }
+                villains = tempHideout;
+            }
+        }
 
     }
 
