@@ -40,10 +40,6 @@ public class Main {
             //Number of battles is cut off at 5000 due to cpu speed concerns.
             i++;
             //Start of a new day
-            if (heros[0].getTeamSize() == 0) {
-                System.out.println("All heros have died");
-                return;
-            }
             System.out.println("Day " + i);
             printTeams();
             for (int j = 0; j < heros.length; j++) {
@@ -62,14 +58,14 @@ public class Main {
 
                     //Check if all heros are dead
                     if (!areSupersAlive(1)) {
-                        //All villains are dead
-                        printAgeOf(1);
+                        //All heros are dead
+                        printAgeOf(2);//Villains won
                         return;
                     }
                     //Check if all villains are dead
                     if (!areSupersAlive(2)) {
                         //All villains are dead
-                        printAgeOf(2);
+                        printAgeOf(1);//Heros won
                         return;
                     }
                     //Add a new villain
