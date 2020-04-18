@@ -71,7 +71,7 @@ public class Main {
                         //Check if all villains are dead
                         if(!areSupersAlive(2)) {
                             //All villains are dead
-                            printAgeOf(0);
+                            printAgeOf(2);
                             return;
                         }
                         //Add a new villain
@@ -87,7 +87,11 @@ public class Main {
                             heros[j].removePerson(tempPersonArr1[temp1]);
                         }
                         //Check if all heros are dead
-
+                        if(!areSupersAlive(1)) {
+                            //All villains are dead
+                            printAgeOf(1);
+                            return;
+                        }
                     }
                 }
             }
