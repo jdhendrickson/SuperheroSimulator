@@ -35,7 +35,7 @@ public class Main {
         int temp2;
         Boolean tempBool;
         int i = 0;//Iterator. Is used to determine the number of battles.
-        while (heros[0].getTeamSize() > 0 && i < 5000) {
+        while (areSupersAlive(0) && i < 5000) {
             //Number of battles is cut off at 5000 due to cpu speed concerns.
             i++;
             //Start of a new day
@@ -68,6 +68,12 @@ public class Main {
                         if (villain[k].getTeamSize() > 0) {
                             villain[k].removePerson(tempPersonArr2[temp2]);
                         }
+                        //Check if all villains are dead
+                        if(!areSupersAlive(2)) {
+                            //All villains are dead
+                            printAgeOf(0);
+                            return;
+                        }
                         //Add a new villain
                         newVillian();
                     } else {
@@ -80,10 +86,46 @@ public class Main {
                         if (heros[j].getTeamSize() > 0) {
                             heros[j].removePerson(tempPersonArr1[temp1]);
                         }
+                        //Check if all heros are dead
+
                     }
                 }
             }
         }
+        printAgeOf(0);
+    }
+
+    /**
+     * A way to tell if there are still supers of the input type alive.
+     *
+     * @param in What type of super to look for.
+     *           0 - Both heros AND villains.
+     *           1 - Heros.
+     *           2 - Villains.
+     * @return Are there any supers of the given type alive?
+     */
+    public static boolean areSupersAlive(int in) {
+        boolean out = false;
+        Hideout temp[] = new Hideout[0];
+        if (in == 0) {
+            //Check both heros and villains
+            if (areSupersAlive(1)) {
+                //There are still heros
+                return areSupersAlive(2);//Return result for villains
+            } else {
+                return false;//There are no heros
+            }
+        } else if (in == 1) {
+            temp = heros;
+        } else if (in == 2) {
+            temp = villain;
+        }
+        for (int i = 0; i < temp.length; i++) {
+            if (temp[i].getTeamSize() > 0) {
+                out = true;
+            }
+        }
+        return out;
     }
 
     /**
@@ -124,10 +166,16 @@ public class Main {
         System.out.println("\tHeros:");
         for (int i = 0; i < heros.length; i++) {
             System.out.println("\t\t" + heros[i].getName());
+            for (int j = 0; j < heros[i].getTeamSize(); j++) {
+                System.out.println("\t\t\t" + (heros[i].getTeam()[j]).getName());
+            }
         }
         System.out.println("\tVillains:");
         for (int i = 0; i < villain.length; i++) {
             System.out.println("\t\t" + villain[i].getName());
+            for (int j = 0; j < villain[i].getTeamSize(); j++) {
+                System.out.println("\t\t\t" + (villain[i].getTeam()[j]).getName());
+            }
         }
     }
 
@@ -234,4 +282,5 @@ public class Main {
         }
         return "";
     }
+
 }
