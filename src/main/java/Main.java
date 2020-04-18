@@ -67,10 +67,10 @@ public class Main {
                         printAgeOf(1);//Heros won
                         return;
                     }
-                    //Add a new villain
-                    newVillain();
                 }
             }
+            //Villains spawn
+            newVillain();
         }
         printAgeOf(0);
     }
@@ -161,16 +161,17 @@ public class Main {
     }
 
     /**
-     * A way to add a new villain and keep the hideouts working properly.
+     * A way to add new villains.
      */
     public static void newVillain() {
-        Person tempPerson = new Cape();
-        boolean added = false;
+        int numAdded;
+        Person tempPerson;
         int i = 0;
-        while (i < villains.length && !added) {
-            if (villains[i].getTeamSize() < 5) {
+        while (i < villains.length) {
+            numAdded = getRandNumbInRange(0,2);
+            for (int j = 0; j < numAdded; j++) {
+                tempPerson = new Cape();
                 villains[i].addPerson(tempPerson);
-                added = true;
             }
             i++;
         }
