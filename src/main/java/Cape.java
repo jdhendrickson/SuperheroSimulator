@@ -19,7 +19,7 @@ public class Cape implements Person {
         this.armor = 0;
         this.maxHealth = 5;
         this.currentHealth = maxHealth;
-        name = "Default name";
+        name = "Mook";
     }
 
     /**
