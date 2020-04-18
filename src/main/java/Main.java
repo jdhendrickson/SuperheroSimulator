@@ -35,8 +35,6 @@ public class Main {
         Person villain;
         Hideout hideoutHeros;
         Hideout hideoutVillains;
-        int temp1;
-        int temp2;
         int i = 0;//Iterator. Is used to determine the number of battles.
         while (areSupersAlive(0) && i < numbOfDays) {
             //Number of battles is cut off at a number given in json due to cpu speed concerns.
@@ -48,12 +46,10 @@ public class Main {
                 hideoutHeros = heros[j];//Get a hero hideout
                 for (int k = 0; k < villains.length; k++) {
                     hideoutVillains = villains[k];//Get a villain team
-                    temp1 = getRandNumbInRange(0, hideoutHeros.getTeamSize() - 1);//Pick a hero
-                    hero = hideoutHeros.getTeam()[temp1];
-                    System.out.print("Hero " + hideoutHeros.getTeam()[temp1].getName());
-                    temp2 = getRandNumbInRange(0, hideoutVillains.getTeamSize() - 1);//Pick a villain
-                    villain = hideoutVillains.getTeam()[temp2];
-                    System.out.print(" vs Villain " + hideoutVillains.getTeam()[temp2].getName());
+                    hero = pickRandomPerson(hideoutHeros);
+                    System.out.print("Hero " + hero.getName());
+                    villain = pickRandomPerson(hideoutVillains);
+                    System.out.print(" vs Villain " + villain.getName());
                     System.out.print("\n");
                     //Fight!
                     fight(hero, hideoutHeros, villain, hideoutVillains);
@@ -112,6 +108,22 @@ public class Main {
                 hideout1.removePerson(person1);
             }
         }
+    }
+
+    /**
+     * Pick a random person from an input team's hideout.
+     *
+     * @param in The input hideout.
+     */
+    public static Person pickRandomPerson(Hideout in) {
+        Person out = new Cape();
+        //Return a default cape just in case input was an empty hideout.
+        if (in.getTeamSize() > 0) {
+            int index = getRandNumbInRange(0, in.getTeamSize() - 1);
+            out = in.getTeam()[index];
+        }
+
+        return out;
     }
 
     /**
