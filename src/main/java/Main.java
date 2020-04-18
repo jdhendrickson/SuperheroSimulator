@@ -16,7 +16,8 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 public class Main {
-    static int numbOfDays;
+    static int numbOfDays; //The maximum number of days before the simulation stops
+    static int numbOfHideouts; //The maximum number of hideouts before new capes stop spawning
     static Hideout[] heros;
     static Hideout[] villains;
 
@@ -25,7 +26,6 @@ public class Main {
      * @param args Command line args. First arg should be the json file being looked for.
      */
     public static void main(String[] args) {
-        numbOfDays = 5000;//Have a default max number of days, just in case none is given.
         if (args.length > 0) {
             initFromJson(args[1]);
         } else {
@@ -70,8 +70,10 @@ public class Main {
                     }
                 }
             }
-            //Villains spawn
-            newVillain();
+            if(villains.length <= numbOfHideouts) {
+                //Villains spawn
+                newVillain();
+            }
         }
         printAgeOf(0);
     }
@@ -283,6 +285,9 @@ public class Main {
         JSONArray heroHideoutArr;
         JSONArray capeArr;
         JSONArray mainArr = jsonObj.getJSONArray("City");
+        numbOfDays = jsonObj.optInt("Max Days", 500);
+        numbOfHideouts = jsonObj.optInt("Hideouts Per City", 10);
+
         int damage;
         int dodge;
         int armor;
