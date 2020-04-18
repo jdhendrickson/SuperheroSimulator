@@ -386,6 +386,13 @@ public class Main {
             System.out.println("The villains have triumphed.");
             System.out.println("An age of darkness has begun.");
         }
-        System.out.println("Game Over");
+        System.out.println(" _____                        _____                ");
+        System.out.println("|  __ \\                      |  _  |               ");
+        System.out.println("| |  \\/ __ _ _ __ ___   ___  | | | |_   _____ _ __ ");
+        System.out.println("| | __ / _` | '_ ` _ \\ / _ \\ | | | \\ \\ / / _ \\ '__|");
+        System.out.println("| |_\\ \\ (_| | | | | | |  __/ \\ \\_/ /\\ V /  __/ |   ");
+        System.out.println(" \\____/\\__,_|_| |_| |_|\\___|  \\___/  \\_/ \\___|_|    ");
+
+
     }
 }
