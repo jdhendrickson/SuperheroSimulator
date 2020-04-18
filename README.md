@@ -2,7 +2,14 @@
 
 How To Use:
 By default, the program looks for a file named "SecondCityExample.json"
-This can be overridden by adding a filename for a different json as a command line argument
+This can be overridden by adding a filename for a different json as a command line argument.
+Gradle has been set up so that
+
+	gradle run -PjsonFileName="['SecondCityExample.json']"
+
+will run the code with the json file named SecondCityExample.
+
+
 
 There is a limit to how long the code will run.
 This was added due to some simulations taking almost an hour to complete.
