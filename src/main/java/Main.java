@@ -53,7 +53,6 @@ public class Main {
                     System.out.print("\n");
                     //Fight!
                     fight(hero, hideoutHeros, villain, hideoutVillains);
-
                     //Check if all heros are dead
                     if (!areSupersAlive(1)) {
                         //All heros are dead
@@ -66,6 +65,8 @@ public class Main {
                         printAgeOf(1);//Heros won
                         return;
                     }
+                    //Remove empty hideouts
+                    cleanHideoutList();
                     //Add a new villain
                     newVillain();
                 }
@@ -173,8 +174,14 @@ public class Main {
             }
             i++;
         }
-        //New villain added. Check to make sure that all the hideouts have people
-        for (i = 0; i < villains.length; i++) {
+    }
+
+    /**
+     * Finds any empty hideouts and removes them.
+     */
+    public static void cleanHideoutList() {
+        //Clears the hideout list
+        for (int i = 0; i < villains.length; i++) {
             if (villains[i].getTeamSize() == 0) {
                 //Convert the array into an ArrayList
                 List<Hideout> list = new ArrayList<>();
@@ -183,6 +190,19 @@ public class Main {
                 list.removeAll(Arrays.asList(villains[i]));
                 //Convert back into an array
                 villains = list.toArray(new Hideout[list.size()]);
+                //Go back an iterator, just removed an item
+                i--;
+            }
+        }
+        for (int i = 0; i < heros.length; i++) {
+            if (heros[i].getTeamSize() == 0) {
+                //Convert the array into an ArrayList
+                List<Hideout> list = new ArrayList<>();
+                Collections.addAll(list, heros);
+                //Remove all instances of the input Student
+                list.removeAll(Arrays.asList(heros[i]));
+                //Convert back into an array
+                heros = list.toArray(new Hideout[list.size()]);
                 //Go back an iterator, just removed an item
                 i--;
             }
