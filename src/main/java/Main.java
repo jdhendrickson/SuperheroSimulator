@@ -17,7 +17,7 @@ import org.json.JSONTokener;
 
 public class Main {
     static Hideout[] heros;
-    static Hideout[] villain;
+    static Hideout[] villains;
 
     /**
      * The main function.
@@ -29,11 +29,12 @@ public class Main {
         } else {
             initFromJson("SecondCityExample.json");
         }
-        Person[] tempPersonArr1;
-        Person[] tempPersonArr2;
+        Person hero;
+        Person villain;
+        Hideout hideoutHeros;
+        Hideout hideoutVillains;
         int temp1;
         int temp2;
-        Boolean tempBool;
         int i = 0;//Iterator. Is used to determine the number of battles.
         while (areSupersAlive(0) && i < 5000) {
             //Number of battles is cut off at 5000 due to cpu speed concerns.
@@ -46,57 +47,73 @@ public class Main {
             System.out.println("Day " + i);
             printTeams();
             for (int j = 0; j < heros.length; j++) {
-                tempPersonArr1 = heros[j].getTeam();//Get a hero team
-                for (int k = 0; k < villain.length; k++) {
-                    tempPersonArr2 = villain[k].getTeam();//Get a villan team
-                    temp1 = getRandNumbInRange(0, tempPersonArr1.length - 1);//Pick a hero
-                    System.out.print("Hero " + tempPersonArr1[temp1].getName());
-                    temp2 = getRandNumbInRange(0, tempPersonArr2.length - 1);//Pick a villain
-                    System.out.print(" vs Villian " + tempPersonArr2[temp2].getName());
+                hideoutHeros = heros[j];//Get a hero hideout
+                for (int k = 0; k < villains.length; k++) {
+                    hideoutVillains = villains[k];//Get a villain team
+                    temp1 = getRandNumbInRange(0, hideoutHeros.getTeamSize() - 1);//Pick a hero
+                    hero = hideoutHeros.getTeam()[temp1];
+                    System.out.print("Hero " + hideoutHeros.getTeam()[temp1].getName());
+                    temp2 = getRandNumbInRange(0, hideoutVillains.getTeamSize() - 1);//Pick a villain
+                    villain = hideoutVillains.getTeam()[temp2];
+                    System.out.print(" vs Villain " + hideoutVillains.getTeam()[temp2].getName());
                     System.out.print("\n");
                     //Fight!
-                    tempBool = tempPersonArr1[temp1].fight(tempPersonArr2[temp2]);
-                    if (tempBool) {
-                        //The heros won, buff the hero who won with a new power
-                        System.out.println("\tHeros won the battle");
-                        tempPersonArr1[temp1] = new PowerDecorator(tempPersonArr1[temp1],
-                                getRandNumbInRange(0, tempPersonArr2[temp2].getDamage()),
-                                getRandNumbInRange(0, tempPersonArr2[temp2].getDodge()),
-                                getRandNumbInRange(0, tempPersonArr2[temp2].getArmor()),
-                                getRandNumbInRange(0, tempPersonArr2[temp2].getArmor()));
-                        //Kill the loosing villan
-                        if (villain[k].getTeamSize() > 0) {
-                            villain[k].removePerson(tempPersonArr2[temp2]);
-                        }
-                        //Check if all villains are dead
-                        if(!areSupersAlive(2)) {
-                            //All villains are dead
-                            printAgeOf(2);
-                            return;
-                        }
-                        //Add a new villain
-                        newVillian();
-                    } else {
-                        System.out.println("\tHeros lost the battle");
-                        tempPersonArr2[temp2] = new PowerDecorator(tempPersonArr2[temp2],
-                                getRandNumbInRange(0, tempPersonArr1[temp1].getDamage()),
-                                getRandNumbInRange(0, tempPersonArr1[temp1].getDodge()),
-                                getRandNumbInRange(0, tempPersonArr1[temp1].getArmor()),
-                                getRandNumbInRange(0, tempPersonArr1[temp1].getArmor()));
-                        if (heros[j].getTeamSize() > 0) {
-                            heros[j].removePerson(tempPersonArr1[temp1]);
-                        }
-                        //Check if all heros are dead
-                        if(!areSupersAlive(1)) {
-                            //All villains are dead
-                            printAgeOf(1);
-                            return;
-                        }
+                    fight(hero, hideoutHeros, villain, hideoutVillains);
+
+                    //Check if all heros are dead
+                    if (!areSupersAlive(1)) {
+                        //All villains are dead
+                        printAgeOf(1);
+                        return;
                     }
+                    //Check if all villains are dead
+                    if (!areSupersAlive(2)) {
+                        //All villains are dead
+                        printAgeOf(2);
+                        return;
+                    }
+                    //Add a new villain
+                    newVillain();
                 }
             }
         }
         printAgeOf(0);
+    }
+
+    /**
+     * A method containing the actual fight stuff.
+     *
+     * @param person1  The first person in the fight.
+     * @param hideout1 The hideout of the first person.
+     * @param person2  The second person in the fight.
+     * @param hideout2 The hideout of the first person.
+     */
+    public static void fight(Person person1, Hideout hideout1, Person person2, Hideout hideout2) {
+        boolean tempBool = person1.fight(person2);
+        if (tempBool) {
+            //The heros won, buff the hero who won with a new power
+            System.out.println("\t" + person1.getName() + " won the battle");
+            person1 = new PowerDecorator(person1,
+                    getRandNumbInRange(0, person2.getDamage()),
+                    getRandNumbInRange(0, person2.getDodge()),
+                    getRandNumbInRange(0, person2.getArmor()),
+                    getRandNumbInRange(0, person2.getArmor()));
+            //Kill the looser
+            if (hideout2.getTeamSize() > 0) {
+                hideout2.removePerson(person2);
+            }
+        } else {
+            System.out.println("\t" + person2.getName() + " won the battle");
+            person2 = new PowerDecorator(person2,
+                    getRandNumbInRange(0, person1.getDamage()),
+                    getRandNumbInRange(0, person1.getDodge()),
+                    getRandNumbInRange(0, person1.getArmor()),
+                    getRandNumbInRange(0, person1.getArmor()));
+            //Kill the looser
+            if (hideout1.getTeamSize() > 0) {
+                hideout1.removePerson(person1);
+            }
+        }
     }
 
     /**
@@ -122,7 +139,7 @@ public class Main {
         } else if (in == 1) {
             temp = heros;
         } else if (in == 2) {
-            temp = villain;
+            temp = villains;
         }
         for (int i = 0; i < temp.length; i++) {
             if (temp[i].getTeamSize() > 0) {
@@ -135,27 +152,27 @@ public class Main {
     /**
      * A way to add a new villain and keep the hideouts working properly.
      */
-    public static void newVillian() {
+    public static void newVillain() {
         Person tempPerson = new Cape();
         boolean added = false;
         int i = 0;
-        while (i < villain.length && !added) {
-            if (villain[i].getTeamSize() < 5) {
-                villain[i].addPerson(tempPerson);
+        while (i < villains.length && !added) {
+            if (villains[i].getTeamSize() < 5) {
+                villains[i].addPerson(tempPerson);
                 added = true;
             }
             i++;
         }
         //New villain added. Check to make sure that all the hideouts have people
-        for (i = 0; i < villain.length; i++) {
-            if (villain[i].getTeamSize() == 0) {
+        for (i = 0; i < villains.length; i++) {
+            if (villains[i].getTeamSize() == 0) {
                 //Convert the array into an ArrayList
                 List<Hideout> list = new ArrayList<>();
-                Collections.addAll(list, villain);
+                Collections.addAll(list, villains);
                 //Remove all instances of the input Student
-                list.removeAll(Arrays.asList(villain[i]));
+                list.removeAll(Arrays.asList(villains[i]));
                 //Convert back into an array
-                villain = list.toArray(new Hideout[list.size()]);
+                villains = list.toArray(new Hideout[list.size()]);
                 //Go back an iterator, just removed an item
                 i--;
             }
@@ -175,10 +192,10 @@ public class Main {
             }
         }
         System.out.println("\tVillains:");
-        for (int i = 0; i < villain.length; i++) {
-            System.out.println("\t\t" + villain[i].getName());
-            for (int j = 0; j < villain[i].getTeamSize(); j++) {
-                System.out.println("\t\t\t" + (villain[i].getTeam()[j]).getName());
+        for (int i = 0; i < villains.length; i++) {
+            System.out.println("\t\t" + villains[i].getName());
+            for (int j = 0; j < villains[i].getTeamSize(); j++) {
+                System.out.println("\t\t\t" + (villains[i].getTeam()[j]).getName());
             }
         }
     }
@@ -244,12 +261,12 @@ public class Main {
         //Deal with the Villains
         //Get the villain hideout arr
         JSONArray villainHideoutArr = mainArr.getJSONObject(1).getJSONArray("Villain Hideouts");
-        villain = new Hideout[villainHideoutArr.length()];
+        villains = new Hideout[villainHideoutArr.length()];
         for (int i = 0; i < villainHideoutArr.length(); i++) {
             hideoutObj = villainHideoutArr.getJSONObject(i);
             name = hideoutObj.getString("Name");
             if (hideoutObj.getString("Type").equals("UndergroundCave")) {
-                villain[i] = new UndergroundCaveBuilder(name, "Hero").getHideout();
+                villains[i] = new UndergroundCaveBuilder(name, "Hero").getHideout();
             }
             capeArr = hideoutObj.getJSONArray("Capes");
             //Populate the hideout
@@ -260,7 +277,7 @@ public class Main {
                 dodge = capeObj.optInt("Dodge", 0);
                 armor = capeObj.optInt("Armor", 0);
                 health = capeObj.optInt("Health", 5);
-                villain[i].addPerson(new Cape(name, damage, dodge, armor, health));
+                villains[i].addPerson(new Cape(name, damage, dodge, armor, health));
             }
         }
     }
