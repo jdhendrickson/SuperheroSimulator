@@ -13,6 +13,13 @@
               "Dodge": 0,
               "Armor": 0,
               "MaxHealth": 10
+            },
+            {
+              "Name": "Gretel",
+              "Damage": 1,
+              "Dodge": 0,
+              "Armor": 0,
+              "MaxHealth": 10
             }
           ]
         }
