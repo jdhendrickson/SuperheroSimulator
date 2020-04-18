@@ -54,7 +54,8 @@ public class Main {
                     //Fight!
                     fight(hero, hideoutHeros, villain, hideoutVillains);
                     //Remove empty hideouts
-                    cleanHideoutList();
+                    cleanHideoutList(heros);
+                    cleanHideoutList(villains);
                     //Check if all heros are dead
                     if (!areSupersAlive(1)) {
                         //All heros are dead
@@ -178,32 +179,28 @@ public class Main {
     }
 
     /**
+     * Split a hideout list into hideouts of teamsize < 5.
+     *
+     * @param in The hideout list to change.
+     */
+    public static void splitHideouts(Hideout[] in) {
+
+    }
+
+    /**
      * Finds any empty hideouts and removes them.
      */
-    public static void cleanHideoutList() {
+    public static void cleanHideoutList(Hideout[] in) {
         //Clears the hideout list
-        for (int i = 0; i < villains.length; i++) {
-            if (villains[i].getTeamSize() == 0) {
+        for (int i = 0; i < in.length; i++) {
+            if (in[i].getTeamSize() == 0) {
                 //Convert the array into an ArrayList
                 List<Hideout> list = new ArrayList<>();
-                Collections.addAll(list, villains);
+                Collections.addAll(list, in);
                 //Remove all instances of the input Student
-                list.removeAll(Arrays.asList(villains[i]));
+                list.removeAll(Arrays.asList(in[i]));
                 //Convert back into an array
-                villains = list.toArray(new Hideout[list.size()]);
-                //Go back an iterator, just removed an item
-                i--;
-            }
-        }
-        for (int i = 0; i < heros.length; i++) {
-            if (heros[i].getTeamSize() == 0) {
-                //Convert the array into an ArrayList
-                List<Hideout> list = new ArrayList<>();
-                Collections.addAll(list, heros);
-                //Remove all instances of the input Student
-                list.removeAll(Arrays.asList(heros[i]));
-                //Convert back into an array
-                heros = list.toArray(new Hideout[list.size()]);
+                in = list.toArray(new Hideout[list.size()]);
                 //Go back an iterator, just removed an item
                 i--;
             }
