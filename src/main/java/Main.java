@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 public class Main {
+    static int numbOfDays;
     static Hideout[] heros;
     static Hideout[] villains;
 
@@ -24,6 +25,7 @@ public class Main {
      * @param args Command line args. First arg should be the json file being looked for.
      */
     public static void main(String[] args) {
+        numbOfDays = 5000;//Have a default max number of days, just in case none is given.
         if (args.length > 0) {
             initFromJson(args[1]);
         } else {
@@ -36,8 +38,8 @@ public class Main {
         int temp1;
         int temp2;
         int i = 0;//Iterator. Is used to determine the number of battles.
-        while (areSupersAlive(0) && i < 5000) {
-            //Number of battles is cut off at 5000 due to cpu speed concerns.
+        while (areSupersAlive(0) && i < numbOfDays) {
+            //Number of battles is cut off at a number given in json due to cpu speed concerns.
             i++;
             //Start of a new day
             System.out.println("Day " + i);
@@ -310,7 +312,7 @@ public class Main {
      */
     public static void printAgeOf(int in) {
         if (in == 0) {
-            System.out.println("Simulation stopped due to reaching the maximum number of days.");
+            System.out.println("Simulation stopped due to reaching " + numbOfDays + " days.");
             System.out.println("The heros and villains are evenly matched.");
         } else if (in == 1) {
             System.out.println("All the villains have died");
