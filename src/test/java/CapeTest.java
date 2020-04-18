@@ -61,6 +61,12 @@ public class CapeTest {
         assertFalse(testCape.fight(opponent));
         testCape = new PowerDecorator(testCape, 50, 50, 50, 50);
         assertTrue(testCape.fight(opponent));
+    }
 
+    //A test for cape constructors
+    @Test
+    public void testConstructor() {
+        Person capeTest = new Cape("Name", 1, 0, 0, 5);
+        assertEquals("Name", capeTest.getName());
     }
 }
