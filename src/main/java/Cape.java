@@ -40,12 +40,12 @@ public class Cape implements Person {
      * @param maxHealth How much health the cape starts with.
      */
     public Cape(String name, int damage, int dodge, int armor, int maxHealth) {
+        this(name);
         this.damage = damage;
         this.dodge = dodge;
         this.armor = armor;
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
-        this.name = name;
     }
 
     /**
